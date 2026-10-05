@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNSPOKEN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="ambient"></div>
+
+<!-- HOME -->
+<section id="home" class="screen active">
+    <div class="home-content">
+        <p class="tiny">A SPACE FOR WHAT YOU DON'T SAY</p>
+
+        <h1>UNSPOKEN</h1>
+
+        <p class="tagline">
+            Some things don't need to be said out loud.
+        </p>
+
+        <div class="home-options">
+
+            <button class="choice-card" onclick="openDearMe()">
+                <span class="choice-icon">💌</span>
+                <span class="choice-title">DEAR ME</span>
+                <span class="choice-text">
+                    Write something for the person you're becoming.
+                </span>
+            </button>
+
+            <button class="choice-card" onclick="openReset()">
+                <span class="choice-icon">🌙</span>
+                <span class="choice-title">THE RESET</span>
+                <span class="choice-text">
+                    Two minutes. Your way.
+                </span>
+            </button>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- DEAR ME -->
+<section id="dearMe" class="screen">
+
+    <button class="back" onclick="goHome()">← Back</button>
+
+    <div class="page-content">
+
+        <p class="tiny">DEAR ME</p>
+
+        <h2>A letter to the person<br>you're becoming.</h2>
+
+        <textarea
+            id="letterText"
+            placeholder="Write whatever you wish someone had told you..."
+        ></textarea>
+
+        <button class="primary-button" onclick="continueLetter()">
+            Continue →
+        </button>
+
+    </div>
+</section>
+
+
+<!-- DECORATE ENVELOPE -->
+<section id="decorate" class="screen">
+
+    <button class="back" onclick="showScreen('dearMe')">← Back</button>
+
+    <div class="page-content">
+
+        <p class="tiny">MAKE IT YOURS</p>
+
+        <h2>Choose your envelope.</h2>
+
+        <div class="envelope-options">
+
+            <button class="envelope-choice midnight" onclick="chooseEnvelope('midnight', this)">
+                Midnight
+            </button>
+
+            <button class="envelope-choice mist" onclick="chooseEnvelope('mist', this)">
+                Mist
+            </button>
+
+            <button class="envelope-choice plum" onclick="chooseEnvelope('plum', this)">
+                Plum
+            </button>
+
+            <button class="envelope-choice paper" onclick="chooseEnvelope('paper', this)">
+                Paper
+            </button>
+
+        </div>
+
+        <h3>Choose your seal</h3>
+
+        <div class="seal-options">
+            <button onclick="chooseSeal('✦', this)">✦</button>
+            <button onclick="chooseSeal('♡', this)">♡</button>
+            <button onclick="chooseSeal('☾', this)">☾</button>
+            <button onclick="chooseSeal('∞', this)">∞</button>
+        </div>
+
+        <h3>When should you open it?</h3>
+
+        <div class="unlock-options">
+
+            <button onclick="setUnlock(7, this)">7 days</button>
+
+            <button onclick="setUnlock(30, this)">30 days</button>
+
+            <button onclick="setUnlock(90, this)">3 months</button>
+
+            <button onclick="setUnlock(365, this)">1 year</button>
+
+            <label class="custom-date">
+                Custom
+                <input type="date" id="customDate">
+            </label>
+
+        </div>
+
+        <button class="primary-button" onclick="sealLetter()">
+            Seal it
+        </button>
+
+    </div>
+</section>
+
+
+<!-- SEALED -->
+<section id="sealed" class="screen">
+
+    <div class="sealed-content">
+
+        <p class="tiny">SEALED</p>
+
+        <div id="envelope" class="envelope midnight">
+
+            <div class="envelope-flap"></div>
+
+            <div class="envelope-seal" id="sealDisplay">
+                ✦
+            </div>
+
+        </div>
+
+        <h2>A message from someone<br>who knew you before you got here.</h2>
+
+        <p class="you">You.</p>
+
+        <p id="unlockText"></p>
+
+        <button id="openLetterButton"
+                class="primary-button hidden"
+                onclick="openLetter()">
+            Open letter
+        </button>
+
+        <button class="text-button" onclick="goHome()">
+            Back home
+        </button>
+
+    </div>
+</section>
+
+
+<!-- OPENED LETTER -->
+<section id="openedLetter" class="screen">
+
+    <div class="page-content">
+
+        <p class="tiny">DEAR ME</p>
+
+        <h2>You made it here.</h2>
+
+        <div id="savedLetter" class="letter-display"></div>
+
+        <button class="primary-button" onclick="goHome()">
+            Close
+        </button>
+
+    </div>
+</section>
+
+
+<!-- RESET MENU -->
+<section id="resetMenu" class="screen">
+
+    <button class="back" onclick="goHome()">← Back</button>
+
+    <div class="page-content">
+
+        <p class="tiny">THE RESET</p>
+
+        <h2>Two minutes.<br>Your way.</h2>
+
+        <p class="description">
+            Pick whatever feels right right now.
+        </p>
+
+        <div class="reset-grid">
+
+            <button onclick="startExperience('burn')">
+                <span>🔥</span>
+                <strong>Burn It</strong>
+                <small>Let something go.</small>
+            </button>
+
+            <button onclick="startExperience('dump')">
+                <span>🗑️</span>
+                <strong>Dump It</strong>
+                <small>Get it all out.</small>
+            </button>
+
+            <button onclick="startExperience('float')">
+                <span>🌊</span>
+                <strong>Let It Float</strong>
+                <small>Release one thought.</small>
+            </button>
+
+            <button onclick="startExperience('loop')">
+                <span>✂️</span>
+                <strong>Cut the Loop</strong>
+                <small>Break the what-ifs.</small>
+            </button>
+
+            <button onclick="startExperience('color')">
+                <span>🎨</span>
+                <strong>Color Your Feeling</strong>
+                <small>No explanation needed.</small>
+            </button>
+
+            <button onclick="startExperience('exist')">
+                <span>🌙</span>
+                <strong>Just Exist</strong>
+                <small>You don't have to fix anything.</small>
+            </button>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- RESET EXPERIENCE -->
+<section id="experience" class="screen">
+
+    <button class="back" onclick="openReset()">← Reset menu</button>
+
+    <div class="timer">
+        <span id="timer">02:00</span>
+    </div>
+
+    <!-- BURN -->
+    <div id="burnExperience" class="experience-content hidden">
+
+        <p class="tiny">BURN IT</p>
+
+        <h2>Write the thing<br>you're ready to let go of.</h2>
+
+        <textarea
+            id="burnText"
+            maxlength="500"
+            placeholder="Nobody else has to read this..."
+        ></textarea>
+
+        <button class="primary-button" onclick="burnThought()">
+            Burn it
+        </button>
+
+        <div id="burnResult"></div>
+
+    </div>
+
+
+    <!-- DUMP -->
+    <div id="dumpExperience" class="experience-content hidden">
+
+        <p class="tiny">DUMP IT</p>
+
+        <h2>Don't organize it.<br>Just get it out.</h2>
+
+        <textarea
+            id="dumpText"
+            placeholder="Everything in your head. Go."
+        ></textarea>
+
+        <button class="primary-button" onclick="dumpThought()">
+            Clear it
+        </button>
+
+        <div id="dumpResult"></div>
+
+    </div>
+
+
+    <!-- FLOAT -->
+    <div id="floatExperience" class="experience-content hidden">
+
+        <p class="tiny">LET IT FLOAT</p>
+
+        <h2>One thought.<br>Then let it go.</h2>
+
+        <input
+            id="floatText"
+            placeholder="What's on your mind?"
+        >
+
+        <button class="primary-button" onclick="floatThought()">
+            Let it float
+        </button>
+
+        <div id="floatScene"></div>
+
+    </div>
+
+
+    <!-- LOOP -->
+    <div id="loopExperience" class="experience-content hidden">
+
+        <p class="tiny">CUT THE LOOP</p>
+
+        <h2>What keeps playing<br>in your head?</h2>
+
+        <input
+            id="loopText"
+            placeholder="What if..."
+        >
+
+        <p>Is there something you can control?</p>
+
+        <div class="control-buttons">
+
+            <button onclick="loopAnswer('yes')">
+                Yes
+            </button>
+
+            <button onclick="loopAnswer('no')">
+                No
+            </button>
+
+        </div>
+
+        <div id="loopResult"></div>
+
+    </div>
+
+
+    <!-- COLOR -->
+    <div id="colorExperience" class="experience-content hidden">
+
+        <p class="tiny">COLOR YOUR FEELING</p>
+
+        <h2>You don't have to explain it.</h2>
+
+        <p>Choose the color that feels closest.</p>
+
+        <input
+            type="color"
+            id="feelingColor"
+            value="#777777"
+            onchange="changeFeelingColor()"
+        >
+
+        <div id="colorDisplay"></div>
+
+        <p id="colorMessage">
+            Whatever you're feeling is allowed to exist.
+        </p>
+
+    </div>
+
+
+    <!-- EXIST -->
+    <div id="existExperience" class="experience-content hidden">
+
+        <p class="tiny">JUST EXIST</p>
+
+        <div class="exist-scene">
+
+            <div class="moon">☾</div>
+
+            <p>
+                You don't have to solve anything<br>
+                for the next two minutes.
+            </p>
+
+            <span>Just breathe.</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- UNSPOKEN Music -->
+<audio id="bgMusic" loop preload="auto">
+ <source src="audio/music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicToggle" class="music-toggle" aria-label="Toggle music">
+  ♫
+</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
